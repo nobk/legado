@@ -26,6 +26,7 @@ object SourceHelp {
     fun insertRssSource(vararg rssSources: RssSource) {
         rssSources.forEach { rssSource ->
             if (is18Plus(rssSource.sourceUrl)) {
+                appDb.rssSourceDao.insert(rssSource)
                 handler.post {
                     appCtx.toastOnUi("${rssSource.sourceName}是18+网址,禁止导入.")
                 }
